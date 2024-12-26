@@ -1,24 +1,29 @@
 package br.com.praticatrycatch.principal;
 
-import excecao.DivisaoPorZeroException;
+import br.com.praticatrycatch.excecao.DivisaoPorZeroException;
 
 import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
 
-        try {
             Scanner teclado = new Scanner(System.in);
 
             System.out.println("Digite o primeiro número: ");
-            double n1 = teclado.nextDouble();
+            int n1 = teclado.nextInt();
 
             System.out.println("Digite o segundo número: ");
-            double n2 = teclado.nextDouble();
+            int n2 = teclado.nextInt();
 
-            double resultado = n1/n2;
-        } catch (DivisaoPorZeroException e) {
-           throw new DivisaoPorZeroException
-        }
+            try {
+                if (n2 <= 0) {
+                    throw new DivisaoPorZeroException("Não é possível dividir por zero ou números negativos");
+                }
+
+                int resultado = n1/n2;
+                System.out.println("Resultado:" + resultado);
+            } catch(DivisaoPorZeroException e) {
+                System.out.println(e.getMessage());
+            }
     }
 }
