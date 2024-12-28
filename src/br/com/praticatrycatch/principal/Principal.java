@@ -1,34 +1,52 @@
 package br.com.praticatrycatch.principal;
 
 import br.com.praticatrycatch.excecao.DivisaoPorZeroException;
+import br.com.praticatrycatch.modelos.ResultadoDivisao;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
+
     public static void main(String[] args) {
 
-            Scanner teclado = new Scanner(System.in);
+        Scanner teclado = new Scanner(System.in);
 
-            try {
+        int n1 = lerInteiro(teclado);
+        int n2 = lerInteiro(teclado);
 
-            System.out.println("Digite o primeiro número: ");
-            int n1 = teclado.nextInt();
-
-            System.out.println("Digite o segundo número: ");
-            int n2 = teclado.nextInt();
-
-            //try {
-                if (n2 <= 0) {
-                    throw new DivisaoPorZeroException("Não é possível dividir por zero ou números negativos");
-                }
-
-                int resultado = n1/n2;
-                System.out.println("Resultado:" + resultado);
-            } catch (DivisaoPorZeroException e) {
-                System.out.println(e.getMessage());
-            } catch (InputMismatchException e) {
-                System.out.println("Digite apenas números");
+            ResultadoDivisao resultado = dividirNumeros(n1, n2);
+            if (resultado.isResultadoLogico() == false) {
+                System.out.println("Não foi possível concluir a divisão");
+            } else {
+                System.out.println("Resultado: " + resultado.getResultadoNumerico());
             }
+
+            teclado.close();
+    }
+    public static int lerInteiro (Scanner scanner){
+        while(true) {
+            System.out.println("Digite um número inteiro");
+            try {
+                return scanner.nextInt();
+            } catch(InputMismatchException e) {
+                System.out.println("Entrada inválida. Digite apenas números");
+                scanner.next();
+            }
+        }
+    }
+
+    public static ResultadoDivisao dividirNumeros(int n1, int n2){
+        try {
+            if (n2 == 0) {
+                throw new DivisaoPorZeroException("Divisão por zero é inválida. Não é possível dividir " + n1 + " por " + n2);
+
+            } else {
+                return new ResultadoDivisao(n1/n2, true);
+            }
+        } catch(DivisaoPorZeroException e) {
+            System.out.println(e.getMessage());
+            return new ResultadoDivisao(-1, false);
+        }
     }
 }
