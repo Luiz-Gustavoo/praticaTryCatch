@@ -1,4 +1,4 @@
-package br.com.praticatrycatch.excecao;
+package br.com.exercicio1.excecao;
 
 public class DivisaoPorZeroException extends RuntimeException {
     private String mensagem;

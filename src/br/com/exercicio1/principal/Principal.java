@@ -1,7 +1,7 @@
-package br.com.praticatrycatch.principal;
+package br.com.exercicio1.principal;
 
-import br.com.praticatrycatch.excecao.DivisaoPorZeroException;
-import br.com.praticatrycatch.modelos.ResultadoDivisao;
+import br.com.exercicio1.excecao.DivisaoPorZeroException;
+import br.com.exercicio1.modelos.ResultadoDivisao;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

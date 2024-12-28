@@ -1,4 +1,4 @@
-package br.com.praticatrycatch.modelos;
+package br.com.exercicio1.modelos;
 
 public class ResultadoDivisao {
     private int resultadoNumerico;
